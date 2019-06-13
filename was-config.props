@@ -1,0 +1,36 @@
+#
+# SubSection 1.0.12.0.4 # JVM Section
+#
+ResourceType=JavaVirtualMachine
+ImplementingResourceType=Server
+ResourceId=Cell=!{cellName}:Node=!{nodeName}:Server=!{serverName}:JavaProcessDef=ID#JavaProcessDef_1183122130078:JavaVirtualMachine=ID#JavaVirtualMachine_1183122130078
+AttributeInfo=jvmEntries
+#
+
+#
+#Properties
+#
+internalClassAccessMode=ALLOW #ENUM(ALLOW|RESTRICT),default(ALLOW)
+JavaHome="/opt/IBM/WebSphere/AppServer/java" #readonly
+debugArgs="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777"
+classpath={}
+initialHeapSize=0 #integer,default(0)
+runHProf=false #boolean,default(false)
+genericJvmArguments=
+hprofArguments=
+osName=null
+bootClasspath={}
+verboseModeJNI=false #boolean,default(false)
+maximumHeapSize=0 #integer,default(0)
+disableJIT=false #boolean,default(false)
+executableJarFileName=
+verboseModeGarbageCollection=true #boolean,default(true)
+debugMode=true #boolean,default(false)
+verboseModeClass=false #boolean,default(false)
+
+
+#Environment Variables
+#cellName=DefaultCell01
+#nodeName=DefaultNode01
+#serverName=server1
+#SERVER_LOG_ROOT=/logs/${serverName}
