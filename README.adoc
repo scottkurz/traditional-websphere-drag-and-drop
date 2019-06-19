@@ -6,7 +6,7 @@ How to build a https://github.com/WASdev/ci.docker.websphere-traditional[WebSphe
 . Clone the Docker build directory
 * `git clone git@github.com:scottkurz/monitored-twas-docker.git`
 . Do a docker build via:
-* `cd samples/my-rest-app;  docker build -t xyz:NN .`  
+* `docker build -t xyz:NN .`  
 * _Optional_: OR, start with my image: *scottkurz/my-rest-app:1* on DockerHub
 . Run a new container with:
 [source,bash]
