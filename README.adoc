@@ -8,11 +8,12 @@ How to build a https://github.com/WASdev/ci.docker.websphere-traditional[WebSphe
 . Do a docker build via:
 * `docker build -t xyz:NN .`  
 * _Optional_: OR, start with my image: *scottkurz/my-rest-app:1* on DockerHub
-. Run a new container with:
+. Run a new container _from repository root directory_ with:
+.. Windows 
++
 [source,bash]
 ----
 REPO_ROOT="$(cygpath -w $(pwd))"  # From Git Bash / Cygwin
-
 winpty docker run --name my-rest-app \
 -v "$REPO_ROOT\volumes\PASSWORD.txt":/tmp/PASSWORD \
 -v "$REPO_ROOT\volumes\monitored-app-dir":/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/monitoredDeployableApps \
@@ -20,12 +21,14 @@ winpty docker run --name my-rest-app \
 -e ENABLE_BASIC_LOGGING=true \
 -it  scottkurz/my-rest-app:1
 ----
- (or on Linux)
+.. (OR) Linux/Mac:
++
 [source,bash]
 ----
+REPO_ROOT=$PWD
 docker run --name my-rest-app \
--v "$PWD/volumes/PASSWORD.txt":/tmp/PASSWORD \
--v "$PWD/volumes/monitored-app-dir":/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/monitoredDeployableApps \
+-v "$REPO_ROOT/volumes/PASSWORD.txt":/tmp/PASSWORD \
+-v "$REPO_ROOT/volumes/monitored-app-dir":/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/monitoredDeployableApps \
 -p 9043:9043 -p 9443:9443 -p 7777:7777 \
 -e ENABLE_BASIC_LOGGING=true \
 -it  scottkurz/my-rest-app:1
@@ -38,7 +41,7 @@ docker run --name my-rest-app \
 * `git clone https://github.com/scottkurz/MyRestApp`
 . Make changes or whatever, and build it, (not shown, e.g. using RAD/WDT Eclipse tooling with an _Export WAR_):
 . Copy into the mounted directory at location *.../monitored-app-dir/servers/server1*, e.g.:
-   `cp MyRestApp.war "$REPO_ROOT\volumes\monitored-app-dir\servers\server1"`
+   `cp MyRestApp.war "$REPO_ROOT/volumes/monitored-app-dir/servers/server1"`
 . Watch the app get installed:
 ....
 [6/13/19 2:38:46:982 UTC] 00000049 AppManagement I   CWLDD0021I: Event id 580239227-1. Application MyRADRest_war is started on:
