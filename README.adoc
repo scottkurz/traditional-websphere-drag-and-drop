@@ -6,32 +6,32 @@ How to build a https://github.com/WASdev/ci.docker.websphere-traditional[WebSphe
 . Clone the Docker build directory
 * `git clone git@github.com:scottkurz/monitored-twas-docker.git`
 . Do a docker build via:
-* `docker build -t xyz:NN .`  
-* _Optional_: OR, start with my image: *scottkurz/my-rest-app:1* on DockerHub
+* `docker build -t scottkurz/monitored-twas-app-deploy:1 .`  
+* _Optional_: OR, start with my image: *scottkurz/monitored-twas-app-deploy:1* on DockerHub
 . Run a new container _from repository root directory_ with:
 .. Windows 
 +
 [source,bash]
 ----
 REPO_ROOT="$(cygpath -w $(pwd))"  # From Git Bash / Cygwin
-winpty docker run --name my-rest-app \
+winpty docker run --name monitored-twas-app-deploy \
 -v "$REPO_ROOT\volumes\PASSWORD.txt":/tmp/PASSWORD \
 -v "$REPO_ROOT\volumes\monitored-app-dir":/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/monitoredDeployableApps \
 -p 9043:9043 -p 9443:9443 -p 7777:7777 \
 -e ENABLE_BASIC_LOGGING=true \
--it  scottkurz/my-rest-app:1
+-it  scottkurz/monitored-twas-app-deploy:1
 ----
 .. (OR) Linux/Mac:
 +
 [source,bash]
 ----
 REPO_ROOT=$PWD
-docker run --name my-rest-app \
+docker run --name monitored-twas-app-deploy \
 -v "$REPO_ROOT/volumes/PASSWORD.txt":/tmp/PASSWORD \
 -v "$REPO_ROOT/volumes/monitored-app-dir":/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/monitoredDeployableApps \
 -p 9043:9043 -p 9443:9443 -p 7777:7777 \
 -e ENABLE_BASIC_LOGGING=true \
--it  scottkurz/my-rest-app:1
+-it  scottkurz/monitored-twas-app-deploy:1
 ----
 
 
